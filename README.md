@@ -16,7 +16,7 @@ Fotoğraf yükle, yüzleri otomatik bulanıklaştırılmış halini geri al. Pyt
 Python 3.9 veya üstü gerekir.
 
 ```bash
-git clone https://github.com/KULLANICI_ADIN/blurla.git
+git clone https://github.com/mkeremeroglu/blurla.git
 cd blurla
 pip install -r requirements.txt
 ```
