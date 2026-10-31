@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yüz Blur</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(135deg, #000000, #12c6d3);
+      color: #1f2937;
+    }
+    .card {
+      background: #fff;
+      width: 100%;
+      max-width: 460px;
+      padding: 32px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+    h1 { margin: 0 0 8px; font-size: 1.6rem; }
+    p { margin: 0 0 24px; color: #6b7280; }
+    .drop {
+      display: block;
+      padding: 28px 16px;
+      border: 2px dashed #a5b4fc;
+      border-radius: 12px;
+      cursor: pointer;
+      color: #bd5757;
+      transition: background 0.2s;
+    }
+    .drop:hover { background: #eef2ff; }
+    .drop input { display: none; }
+    #preview {
+      display: none;
+      max-width: 100%;
+      max-height: 260px;
+      margin-top: 16px;
+      border-radius: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 28px;
+      border: 0;
+      border-radius: 10px;
+      background: #24d414;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover { background: #1b9b0f; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Yüz Blur</h1>
+    <p>Fotoğraf yükle, yüzleri otomatik bulanıklaştıralım.</p>
+
+    <form method="post" action="{{ url_for('blur') }}" enctype="multipart/form-data">
+      <label class="drop">
+        <span id="label">Fotoğraf seçmek için tıkla</span>
+        <input type="file" name="photo" id="photo" accept="image/*" required>
+      </label>
+      <img id="preview" alt="Önizleme">
+      <button type="submit">Blur At</button>
+    </form>
+  </div>
+
+  <script>
+    const input = document.getElementById("photo");
+    const preview = document.getElementById("preview");
+    const label = document.getElementById("label");
+
+    input.addEventListener("change", () => {
+      const file = input.files[0];
+      if (!file) return;
+      label.textContent = file.name;
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = "block";
+    });
+  </script>
+</body>
+</html>

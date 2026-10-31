@@ -1,0 +1,4 @@
+flask>=3.0
+numpy>=1.26
+# OpenCV 5.x'te CascadeClassifier kaldırıldı, bu yüzden 4.x sürümünde kalıyoruz
+opencv-python>=4.8,<5
